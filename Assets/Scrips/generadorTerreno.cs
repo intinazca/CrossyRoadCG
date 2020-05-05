@@ -1,38 +1,66 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class generadorTerreno : MonoBehaviour
-{  
-     [SerializeField] private int maxTerrainCount;
-      //creamos una lista que va almacenar objetos del juego que son las partes del terreno
-    [SerializeField] private  List<GameObject> terrains = new List<GameObject>();
-     //creamos un objeto de tipo vector que inicia en la posicion 0,0,0
-    private Vector3 currentPosition= new Vector3(0,0,0);
-   
+{
+    [SerializeField] private int maxTerrainCount;
+    //creamos una lista que va almacenar objetos del juego que son las partes del terreno
+    [SerializeField] private List<TerrainData> terrainDatas = new List<TerrainData>();
+    private List<GameObject> currentTerrains = new List<GameObject>();  //creamos una lista de tipo gameobject que va a guardar el terreno actual
+    [SerializeField] private Transform terrainHolder; // este es el pivote sobre el cual se empieza a generar el terreno
+    //creamos un objeto de tipo vector que inicia en la posicion 0,0,0 y es la direccion a donde se nos va a generar el terreno
+    private Vector3 currentPosition = new Vector3(0, 0, 0);
 
-    void Start()
+    private void Start()
     {
-       //usamos el for para recorrer el array del contador de terreno maximo
-      for (int i = 0; i <maxTerrainCount; i++)
-      {
-           SpawnTerrain();
-      }
-      
+        //usamos el for para recorrer el array del contador de terreno maximo
+        for (int i = 0; i < maxTerrainCount; i++)
+        {
+            SpawnTerrain(true);
+        }
+        maxTerrainCount = currentTerrains.Count;
     }
-  
+
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W))
         {
-          SpawnTerrain();
+            SpawnTerrain(false);
         }
     }
-
-    private void SpawnTerrain()
+    private void SpawnTerrain( bool isStart)
     {
-        //  instaciamos el terrenoo y lo generamos de manera ramdom en un rango determinado
-            Instantiate(terrains[Random.Range(0, terrains.Count)], currentPosition, Quaternion.identity);
+        int whichTerrain = UnityEngine.Random.Range(0, terrainDatas.Count);
+        int terrainInSuccession = UnityEngine.Random.Range(1, terrainDatas[whichTerrain].maxInSuccession);
+
+        for (int i = 0; i < terrainInSuccession; i++)
+        {
+            GameObject terrain = Instantiate(terrainDatas[whichTerrain].terrain, currentPosition, Quaternion.identity, terrainHolder);
+            currentTerrains.Add(terrain);
+            if (!isStart)
+            {
+                if (currentTerrains.Count > maxTerrainCount)
+                {
+                    Destroy(currentTerrains[0]);
+                    currentTerrains.RemoveAt(0);
+                }
+            }
+       
+           
             currentPosition.x++;
+        }
+        /*
+        //  instaciamos el terrenoo como tipo game object y lo generamos de manera ramdom en un rango determinado y se va astar actualizando en  currentTerrains
+        GameObject terrains = Instantiate(terrains[Random.Range(0, terrains.Count)], currentPosition, Quaternion.identity);
+        currentTerrains.Add(terrains);
+        //el siguiente if es para que cada que cree terreno, vaya destruyendo el que va quedando atras, esto se hace para no saturar la maquina
+        if (currentTerrains.Count > maxTerrainCount)
+        {
+           Destroy(currentTerrains[0]);
+            currentTerrains.RemoveAt(0);
+        }
+        currentPosition.x++;
+       */
     }
 }

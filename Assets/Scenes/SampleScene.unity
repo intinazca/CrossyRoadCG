@@ -211,7 +211,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -265,7 +265,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -290,11 +290,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.32093623, y: 0.5490153, z: -0.24025264, w: 0.73339003}
-  m_LocalPosition: {x: -0.090255, y: 5.208, z: -2.036}
+  m_LocalPosition: {x: -3.5, y: 8, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 47.269, y: 73.637, z: 0}
 --- !u!1 &1553921301
 GameObject:
@@ -321,11 +321,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1553921301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.2739717, y: -2.6139903, z: 7.419535}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1553921303
 MonoBehaviour:
@@ -339,8 +339,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5630c921ca96479df54ce14a47fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTerrainCount: 20
-  terrains:
-  - {fileID: 781518156080030812, guid: 232e23a23a55b604abb7afea0ee9401f, type: 3}
-  - {fileID: 4051972594785919158, guid: ad27a4b433370ad4f948c63b6c4f7496, type: 3}
-  - {fileID: 5727099507292280485, guid: b88a7d42b9e27a541a5e2db1cb391e0d, type: 3}
+  maxTerrainCount: 68
+  terrainDatas:
+  - {fileID: 11400000, guid: af16d642850b57547a6484b540bf2306, type: 2}
+  - {fileID: 11400000, guid: 87a3add4c88982c439c7abed7d546b00, type: 2}
+  - {fileID: 11400000, guid: 47b4ea75fff1eb643aa8948d2d345fad, type: 2}
+  terrainHolder: {fileID: 2128475231}
+--- !u!1 &2128475230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2128475231}
+  m_Layer: 0
+  m_Name: Terrain Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2128475231
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128475230}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
